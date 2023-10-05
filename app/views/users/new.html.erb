@@ -1,0 +1,14 @@
+<h1>Register</h1>
+
+<%= form_for @user, url: '/users' do |f| %>
+  <div class='f'> 
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+  </div>
+
+  <div class='f'>  
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+  </div>
+
+  <div class='f'> 
