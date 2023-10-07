@@ -6,15 +6,25 @@
   <article class="product-detail">
     <%= image_tag @product.image.url, class: 'main-img' %>
     <div>
-      <h1><%= @product.name %></h1>
+      <h1>
+      <% if @product.quantity == 0 %>
+          <%= @product.name %> <span class="sold-out-badge">Sold Out</span>
+        <% else %>
+          <%= @product.name %>
+        <% end %>
+      </h1>
       <p><%= @product.description %></p>
       <div class="quantity">
         <span><%= @product.quantity %> in stock at </span>
         <span><%= humanized_money_with_symbol @product.price %></span>
       </div>
-      <div class="price">          
+      <div class="price">
+      <% if @product.quantity > 0 %>          
         <%= button_to add_item_cart_path(product_id: @product.id), class: 'btn' , method: :post do %>
           <%= fa_icon "shopping-cart", text: 'Add' %>
+        <% end %>
+        <% else %>
+        <span class="sold-out-badge">Sold Out</span>
         <% end %>          
       </div>
     </div>
